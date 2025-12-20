@@ -1,4 +1,4 @@
-package com.zosh.config;
+package com.example.backend.config;
 
 public class JwtConstant {
 	

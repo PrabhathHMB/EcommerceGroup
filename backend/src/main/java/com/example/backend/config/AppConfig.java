@@ -1,4 +1,4 @@
-package com.zosh.config;
+package com.example.backend.config;
 
 import java.util.Arrays;
 import java.util.Collections;

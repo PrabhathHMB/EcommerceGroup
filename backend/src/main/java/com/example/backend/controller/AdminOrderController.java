@@ -1,4 +1,4 @@
-package com.zosh.controller;
+package com.example.backend.controller;
 
 import java.util.List;
 
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zosh.exception.OrderException;
-import com.zosh.modal.Order;
-import com.zosh.response.ApiResponse;
-import com.zosh.service.OrderService;
+import com.example.backend.exception.OrderException;
+import com.example.backend.modal.Order;
+import com.example.backend.response.ApiResponse;
+import com.example.backend.service.OrderService;
 
 @RestController
 @RequestMapping("/api/admin/orders")

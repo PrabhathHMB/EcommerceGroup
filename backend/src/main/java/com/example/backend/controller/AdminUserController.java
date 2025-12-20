@@ -1,4 +1,4 @@
-package com.zosh.controller;
+package com.example.backend.controller;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zosh.exception.UserException;
-import com.zosh.modal.User;
-import com.zosh.service.UserService;
+import com.example.backend.exception.UserException;
+import com.example.backend.modal.User;
+import com.example.backend.service.UserService;
 
 @RestController
 @RequestMapping("/api/admin")
