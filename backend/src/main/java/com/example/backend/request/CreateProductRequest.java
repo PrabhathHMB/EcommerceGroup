@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.example.backend.modal.Category;
-import com.example.backend.modal.Size;
+import com.example.backend.modal.size;
 import com.example.backend.user.domain.ProductSize;
 
 public class CreateProductRequest {
@@ -25,7 +25,7 @@ public class CreateProductRequest {
 
 	private String color;
 
-	private Set<Size> size = new HashSet<>();
+	private Set<size> size = new HashSet<>();
 
 	private String imageUrl;
 
@@ -33,11 +33,11 @@ public class CreateProductRequest {
 	private String secondLavelCategory;
 	private String thirdLavelCategory;
 
-	public Set<Size> getSize() {
+	public Set<size> getSize() {
 		return size;
 	}
 
-	public void setSize(Set<Size> size) {
+	public void setSize(Set<size> size) {
 		this.size = size;
 	}
 
