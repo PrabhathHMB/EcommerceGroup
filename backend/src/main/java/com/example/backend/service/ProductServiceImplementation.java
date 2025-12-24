@@ -18,7 +18,7 @@ import com.example.backend.modal.Product;
 import com.example.backend.repository.CategoryRepository;
 import com.example.backend.repository.ProductRepository;
 import com.example.backend.request.CreateProductRequest;
-import com.example.backends.user.domain.ProductSubCategory;
+import com.example.backend.user.domain.ProductSubCategory;
 
 @Service
 public class ProductServiceImplementation implements ProductService {

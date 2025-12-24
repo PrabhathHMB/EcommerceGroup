@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Embeddable
 @Data
-public class Size {
+public class size {
 
 	private String name;
 	private int quantity;

@@ -59,7 +59,7 @@ public class Product {
 
     @ElementCollection
     @Column(name = "sizes")
-    private Set<Size> sizes=new HashSet<>();
+    private Set<size> sizes=new HashSet<>();
 
     @Column(name = "image_url")
     private String imageUrl;

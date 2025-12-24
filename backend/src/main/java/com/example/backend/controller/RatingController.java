@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.backend.exception.ProductException;
 import com.example.backend.exception.UserException;
 import com.example.backend.modal.Rating;
-import com.example.backend.modal.Review;
 import com.example.backend.modal.User;
 import com.example.backend.request.RatingRequest;
 import com.example.backend.service.RatingServices;
@@ -31,7 +30,7 @@ public class RatingController {
 	public RatingController(UserService userService,RatingServices ratingServices) {
 		this.ratingServices=ratingServices;
 		this.userService=userService;
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@PostMapping("/create")

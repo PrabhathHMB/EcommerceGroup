@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.backend.exception.ProductException;
 import com.example.backend.modal.Product;
 import com.example.backend.request.CreateProductRequest;
-import com.example.backend.response.ApiResponse;
+import com.example.backend.responce.ApiResponse;
 import com.example.backend.service.ProductService;
 
 @RestController
