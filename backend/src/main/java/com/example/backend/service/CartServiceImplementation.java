@@ -34,8 +34,8 @@ public class CartServiceImplementation implements CartService{
 		return createdCart;
 	}
 	
-	public Cart findUserCart(Long userId) {
-		Cart cart =	cartRepository.findByUserId(userId);
+	public Cart findUserCart(String userId) {
+		Cart cart =	cartRepository.findByUser_Id(userId);
 		int totalPrice=0;
 		int totalDiscountedPrice=0;
 		int totalItem=0;
@@ -56,8 +56,8 @@ public class CartServiceImplementation implements CartService{
 	}
 
 	@Override
-	public CartItem addCartItem(Long userId, AddItemRequest req) throws ProductException {
-		Cart cart=cartRepository.findByUserId(userId);
+	public CartItem addCartItem(String userId, AddItemRequest req) throws ProductException {
+		Cart cart=cartRepository.findByUser_Id(userId);
 		Product product=productService.findProductById(req.getProductId());
 		
 		CartItem isPresent=cartItemService.isCartItemExist(cart, product, req.getSize(),userId);

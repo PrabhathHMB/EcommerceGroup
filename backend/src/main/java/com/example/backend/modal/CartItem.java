@@ -4,26 +4,27 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
+@Document(collection = "cartItems")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CartItem {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private String id;
 	
 	@JsonIgnore
-	@ManyToOne
+	@DBRef
 	private Cart cart;
 	
-	@ManyToOne
+	@DBRef
 	private Product product;
 	
 	private String size;
@@ -34,6 +35,6 @@ public class CartItem {
 	
 	private Integer discountedPrice;
 	
-	private Long userId;
+	private String userId;
 
 }

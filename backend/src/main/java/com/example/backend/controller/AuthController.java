@@ -19,7 +19,7 @@ import com.example.backend.modal.Cart;
 import com.example.backend.modal.User;
 import com.example.backend.repository.UserRepository;
 import com.example.backend.request.LoginRequest;
-import com.example.backend.response.AuthResponse;
+import com.example.backend.responce.AuthResponse;
 import com.example.backend.service.CartService;
 import com.example.backend.service.CustomUserDetails;
 import com.example.backend.user.domain.UserRole;

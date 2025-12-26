@@ -99,7 +99,7 @@ public class OrderServiceImplementation implements OrderService {
 	}
 
 	@Override
-	public Order placedOrder(Long orderId) throws OrderException {
+	public Order placedOrder(String orderId) throws OrderException {
 		Order order=findOrderById(orderId);
 		order.setOrderStatus(OrderStatus.PLACED);
 		order.getPaymentDetails().setStatus(PaymentStatus.COMPLETED);
@@ -107,7 +107,7 @@ public class OrderServiceImplementation implements OrderService {
 	}
 
 	@Override
-	public Order confirmedOrder(Long orderId) throws OrderException {
+	public Order confirmedOrder(String orderId) throws OrderException {
 		Order order=findOrderById(orderId);
 		order.setOrderStatus(OrderStatus.CONFIRMED);
 		
@@ -116,28 +116,28 @@ public class OrderServiceImplementation implements OrderService {
 	}
 
 	@Override
-	public Order shippedOrder(Long orderId) throws OrderException {
+	public Order shippedOrder(String orderId) throws OrderException {
 		Order order=findOrderById(orderId);
 		order.setOrderStatus(OrderStatus.SHIPPED);
 		return orderRepository.save(order);
 	}
 
 	@Override
-	public Order deliveredOrder(Long orderId) throws OrderException {
+	public Order deliveredOrder(String orderId) throws OrderException {
 		Order order=findOrderById(orderId);
 		order.setOrderStatus(OrderStatus.DELIVERED);
 		return orderRepository.save(order);
 	}
 
 	@Override
-	public Order cancledOrder(Long orderId) throws OrderException {
+	public Order cancledOrder(String orderId) throws OrderException {
 		Order order=findOrderById(orderId);
 		order.setOrderStatus(OrderStatus.CANCELLED);
 		return orderRepository.save(order);
 	}
 
 	@Override
-	public Order findOrderById(Long orderId) throws OrderException {
+	public Order findOrderById(String orderId) throws OrderException {
 		Optional<Order> opt=orderRepository.findById(orderId);
 		
 		if(opt.isPresent()) {
@@ -147,7 +147,7 @@ public class OrderServiceImplementation implements OrderService {
 	}
 
 	@Override
-	public List<Order> usersOrderHistory(Long userId) {
+	public List<Order> usersOrderHistory(String userId) {
 		List<Order> orders=orderRepository.getUsersOrders(userId);
 		return orders;
 	}
@@ -159,7 +159,7 @@ public class OrderServiceImplementation implements OrderService {
 	}
 
 	@Override
-	public void deleteOrder(Long orderId) throws OrderException {
+	public void deleteOrder(String orderId) throws OrderException {
 		Order order =findOrderById(orderId);
 		
 		orderRepository.deleteById(orderId);

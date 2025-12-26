@@ -1,4 +1,4 @@
-package com.example.backend.response;
+package com.example.backend.responce;
 
 public class AuthResponse {
 
@@ -7,7 +7,7 @@ public class AuthResponse {
 	private boolean status;
 
 	public AuthResponse() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public AuthResponse(String jwt, boolean status) {

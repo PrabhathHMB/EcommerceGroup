@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.backend.exception.ProductException;
 import com.example.backend.modal.Product;
 import com.example.backend.request.CreateProductRequest;
-import com.example.backend.response.ApiResponse;
+import com.example.backend.responce.ApiResponse;
 import com.example.backend.service.ProductService;
 
 @RestController
@@ -39,7 +39,7 @@ public class AdminProductController {
 	}
 	
 	@DeleteMapping("/{productId}/delete")
-	public ResponseEntity<ApiResponse> deleteProductHandler(@PathVariable Long productId) throws ProductException{
+	public ResponseEntity<ApiResponse> deleteProductHandler(@PathVariable String productId) throws ProductException{
 		
 		System.out.println("dlete product controller .... ");
 		String msg=productService.deleteProduct(productId);
@@ -68,7 +68,7 @@ public class AdminProductController {
 	
 	
 	@PutMapping("/{productId}/update")
-	public ResponseEntity<Product> updateProductHandler(@RequestBody Product req,@PathVariable Long productId) throws ProductException{
+	public ResponseEntity<Product> updateProductHandler(@RequestBody Product req,@PathVariable String productId) throws ProductException{
 		
 		Product updatedProduct=productService.updateProduct(productId, req);
 		

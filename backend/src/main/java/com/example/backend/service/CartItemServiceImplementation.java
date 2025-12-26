@@ -38,7 +38,7 @@ public class CartItemServiceImplementation implements CartItemService {
 	}
 
 	@Override
-	public CartItem updateCartItem(Long userId, Long id, CartItem cartItem) throws CartItemException, UserException {
+	public CartItem updateCartItem(String userId, String id, CartItem cartItem) throws CartItemException, UserException {
 		
 		CartItem item=findCartItemById(id);
 		User user=userService.findUserById(item.getUserId());
@@ -61,9 +61,10 @@ public class CartItemServiceImplementation implements CartItemService {
 	}
 
 	@Override
-	public CartItem isCartItemExist(Cart cart, Product product, String size, Long userId) {
+	public CartItem isCartItemExist(Cart cart, Product product, String size, String userId) {
 		
-		CartItem cartItem=cartItemRepository.isCartItemExist(cart, product, size, userId);
+		CartItem cartItem=cartItemRepository.findByCart_IdAndProduct_IdAndSizeAndUserId(
+			cart.getId(), product.getId(), size, userId);
 		
 		return cartItem;
 	}
@@ -71,7 +72,7 @@ public class CartItemServiceImplementation implements CartItemService {
 	
 
 	@Override
-	public void removeCartItem(Long userId,Long cartItemId) throws CartItemException, UserException {
+	public void removeCartItem(String userId,String cartItemId) throws CartItemException, UserException {
 		
 		System.out.println("userId- "+userId+" cartItemId "+cartItemId);
 		
@@ -90,7 +91,7 @@ public class CartItemServiceImplementation implements CartItemService {
 	}
 
 	@Override
-	public CartItem findCartItemById(Long cartItemId) throws CartItemException {
+	public CartItem findCartItemById(String cartItemId) throws CartItemException {
 		Optional<CartItem> opt=cartItemRepository.findById(cartItemId);
 		
 		if(opt.isPresent()) {

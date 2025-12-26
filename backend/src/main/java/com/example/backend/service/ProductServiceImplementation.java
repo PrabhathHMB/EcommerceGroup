@@ -18,7 +18,7 @@ import com.example.backend.modal.Product;
 import com.example.backend.repository.CategoryRepository;
 import com.example.backend.repository.ProductRepository;
 import com.example.backend.request.CreateProductRequest;
-import com.example.backends.user.domain.ProductSubCategory;
+import com.example.backend.user.domain.ProductSubCategory;
 
 @Service
 public class ProductServiceImplementation implements ProductService {
@@ -94,7 +94,7 @@ public class ProductServiceImplementation implements ProductService {
 	}
 
 	@Override
-	public String deleteProduct(Long productId) throws ProductException {
+	public String deleteProduct(String productId) throws ProductException {
 		
 		Product product=findProductById(productId);
 		
@@ -108,7 +108,7 @@ public class ProductServiceImplementation implements ProductService {
 	}
 
 	@Override
-	public Product updateProduct(Long productId,Product req) throws ProductException {
+	public Product updateProduct(String productId,Product req) throws ProductException {
 		Product product=findProductById(productId);
 		
 		if(req.getQuantity()!=0) {
@@ -130,7 +130,7 @@ public class ProductServiceImplementation implements ProductService {
 	}
 
 	@Override
-	public Product findProductById(Long id) throws ProductException {
+	public Product findProductById(String id) throws ProductException {
 		Optional<Product> opt=productRepository.findById(id);
 		
 		if(opt.isPresent()) {
@@ -166,7 +166,44 @@ public class ProductServiceImplementation implements ProductService {
 
 		Pageable pageable = PageRequest.of(pageNumber, pageSize);
 		
-		List<Product> products = productRepository.filterProducts(category, minPrice, maxPrice, minDiscount, sort);
+		// Get all products and filter in memory (MongoDB query would be too complex with null checks)
+		List<Product> products = productRepository.findAllByOrderByCreatedAtDesc();
+		
+		// Apply category filter
+		if (category != null && !category.isEmpty()) {
+			products = products.stream()
+				.filter(p -> p.getCategory() != null && 
+					p.getCategory().getName() != null && 
+					p.getCategory().getName().equalsIgnoreCase(category))
+				.collect(Collectors.toList());
+		}
+		
+		// Apply price filter
+		if (minPrice != null && maxPrice != null) {
+			products = products.stream()
+				.filter(p -> p.getDiscountedPrice() >= minPrice && p.getDiscountedPrice() <= maxPrice)
+				.collect(Collectors.toList());
+		}
+		
+		// Apply discount filter
+		if (minDiscount != null) {
+			products = products.stream()
+				.filter(p -> p.getDiscountPersent() >= minDiscount)
+				.collect(Collectors.toList());
+		}
+		
+		// Apply sorting
+		if (sort != null) {
+			if ("price_low".equals(sort)) {
+				products = products.stream()
+					.sorted((p1, p2) -> Integer.compare(p1.getDiscountedPrice(), p2.getDiscountedPrice()))
+					.collect(Collectors.toList());
+			} else if ("price_high".equals(sort)) {
+				products = products.stream()
+					.sorted((p1, p2) -> Integer.compare(p2.getDiscountedPrice(), p1.getDiscountedPrice()))
+					.collect(Collectors.toList());
+			}
+		}
 		
 		
 		if (!colors.isEmpty()) {

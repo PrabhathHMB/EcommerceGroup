@@ -28,7 +28,7 @@ public class ReviewServiceImplementation implements ReviewService {
 
 	@Override
 	public Review createReview(ReviewRequest req,User user) throws ProductException {
-		// TODO Auto-generated method stub
+		
 		Product product=productService.findProductById(req.getProductId());
 		Review review=new Review();
 		review.setUser(user);
@@ -42,7 +42,7 @@ public class ReviewServiceImplementation implements ReviewService {
 	}
 
 	@Override
-	public List<Review> getAllReview(Long productId) {
+	public List<Review> getAllReview(String productId) {
 		
 		return reviewRepository.getAllProductsReview(productId);
 	}

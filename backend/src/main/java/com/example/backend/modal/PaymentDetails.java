@@ -2,9 +2,13 @@ package com.example.backend.modal;
 
 import com.example.backend.user.domain.PaymentMethod;
 import com.example.backend.user.domain.PaymentStatus;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PaymentDetails {
 	
 	private PaymentMethod paymentMethod;
@@ -13,7 +17,7 @@ public class PaymentDetails {
 	private String razorpayPaymentLinkId;
 	private String razorpayPaymentLinkReferenceId;
 	private String razorpayPaymentLinkStatus;
-	private String razorpayPaymentId​;
+	private String razorpayPaymentId;
 
 }
 

@@ -14,14 +14,14 @@ public interface ProductService {
 	// only for admin
 	public Product createProduct(CreateProductRequest req) throws ProductException;
 	
-	public String deleteProduct(Long productId) throws ProductException;
+	public String deleteProduct(String productId) throws ProductException;
 	
-	public Product updateProduct(Long productId,Product product)throws ProductException;
+	public Product updateProduct(String productId,Product product)throws ProductException;
 	
 	public List<Product> getAllProducts();
 	
 	// for user and admin both
-	public Product findProductById(Long id) throws ProductException;
+	public Product findProductById(String id) throws ProductException;
 	
 	public List<Product> findProductByCategory(String category);
 	

@@ -38,8 +38,8 @@ public class RatingServiceImplementation implements RatingServices{
 	}
 
 	@Override
-	public List<Rating> getProductsRating(Long productId) {
-		// TODO Auto-generated method stub
+	public List<Rating> getProductsRating(String productId) {
+
 		return ratingRepository.getAllProductsRating(productId);
 	}
 	

@@ -2,16 +2,16 @@ package com.example.backend.repository;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
 import com.example.backend.modal.Order;
+import com.example.backend.user.domain.OrderStatus;
 
-public interface OrderRepository extends JpaRepository<Order, Long> {
+public interface OrderRepository extends MongoRepository<Order, String> {
 
-	@Query("SELECT o FROM Order o WHERE o.user.id = :userId AND (o.orderStatus = PLACED OR o.orderStatus = CONFIRMED OR o.orderStatus = SHIPPED OR o.orderStatus = DELIVERED)")
-	public List<Order> getUsersOrders(@Param("userId") Long userId);
+	@Query("{ 'user.$id' : ?0, 'orderStatus' : { $in: [ 'PLACED', 'CONFIRMED', 'SHIPPED', 'DELIVERED' ] } }")
+	public List<Order> getUsersOrders(String userId);
 
 	List<Order> findAllByOrderByCreatedAtDesc();
 }
